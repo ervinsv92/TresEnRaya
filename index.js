@@ -1,8 +1,8 @@
 const express = require('express');
-const Socket = require('./utils/sockets');
 const app = express();
 const server = require('http').createServer(app);
 const PORT = 3000;
+const Socket = require('./utils/sockets');
 
 app.use(express.static(__dirname + '/public'));
 
