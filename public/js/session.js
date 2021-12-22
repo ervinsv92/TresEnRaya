@@ -1,1 +1,1 @@
-const S_ID_USER = 'ID_USER';
+const S_USER = 'S_USER';

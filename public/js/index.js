@@ -5,16 +5,17 @@ try {
     let socket = io();
 
     socket.on("user_created", idUser=>{
-        let id = sessionStorage.getItem(S_ID_USER) || '';
-        if(id == idUser){
-            
+        let userS = JSON.parse(localStorage.getItem(S_USER));
+        if(idUser == userS.id){
+            window.location = "menu.html";
         }
     })
 
     btnContinuar.addEventListener('click', ()=>{
         let id = create_UUID();
-        sessionStorage.setItem(S_ID_USER, id);
-        socket.emit("init_user", {id, name:txtUsuario.value});
+        let user = {id, name:txtUsuario.value}
+        localStorage.setItem(S_USER, JSON.stringify(user));
+        socket.emit("init_user", user);
     })
 } catch (error) {
     

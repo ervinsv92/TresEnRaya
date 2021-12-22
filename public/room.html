@@ -4,30 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Tres En Raya</title>
+    <title>Room</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src = "/socket.io/socket.io.js"></script>
 </head>
 <body>
     <main class="container mt-2">
         <div class="row">
-            <div class="col-lg-6">
-                <button id="btnCrearSala" class="btn btn-success" type="button">Crear Sala</button>
+            <div class="col-lg-8">
+                <div class="row">
+                    <h1>Jugando: Ervin</h1>
+                </div>
+                <div class="row">
+                    tablero de juego
+                </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
+                <div class="row">
+                    <h3>Codigo: 234234</h3>
+                </div>
+                <div class="row">
+                    <h2>Jugadores</h2>
+                    <ul>
+                        <li>Jugador 1: Ervin - Ganadas: 3</li>
+                        <li>Jugador 2: Carlos - Ganadas: 2</li>
+                    </ul>
+                </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
-                        <input id="txtCodigo" type="text" class="form-control" placeholder="Código">
-                    </div>
-                    <div class="col-lg-6">
-                        <button id="btnIngresarSala" class="btn btn-primary">Ingresar</button>
-                    </div>
+
                 </div>
             </div>
         </div>
     </main>
+
     <script src="./js/session.js"></script>
-    <script src="./js/menu.js"></script>
+    <script src="js/room.js"></script>
 </body>
 </html>

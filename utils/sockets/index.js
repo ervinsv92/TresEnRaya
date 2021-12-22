@@ -22,7 +22,9 @@ class Socket{
                 //socket.emit("escuchar_mensajes", await contenedor.getAll());
 
                 socket.on("init_user", async (user) =>{
-                    this.users.push(user)
+
+                    this.users.push(user);
+                    console.log("Init user: ", this.users)
                     this.io.emit('user_created',user.id);                    
                 });
 
@@ -36,12 +38,26 @@ class Socket{
                         id: uuid(),
                         players:[user],
                         playing:1,
-                        game:emptyGame(),
-                        chat:[],
-                        joinCode:generateJoinCode()
+                        chat:[]
                     }
-                    this.rooms.push(room)
-                    this.io.emit('room_created',);                    
+
+                    room.game = this.emptyGame();
+                    room.joinCode = this.generateJoinCode(); 
+                    this.rooms.push(room);
+                    console.log(this.rooms)
+                    this.io.emit('room_created',room.id);                    
+                });
+
+                socket.on("join_room", async (idUser, joinCode) =>{
+                    const user = this.users.find(x =>x.id === idUser);
+                    user.symbol = 'x';
+                    user.turn = 2;
+                    user.wins = 0;
+
+                    let idxRoom = this.rooms.findIndex(x=>x.joinCode == joinCode)
+
+                    this.rooms[idxRoom].players.push(user);
+                    this.io.emit('joined_room',this.rooms[idxRoom].id);                    
                 });
                 
             });
@@ -51,7 +67,7 @@ class Socket{
     }
 
     emptyGame(){
-        return ['','','']['','','']['','','']
+        return [['','',''],['','',''],['','','']]
     }
 
     generateJoinCode(){
