@@ -44,7 +44,6 @@ class Socket{
                     room.game = this.emptyGame();
                     room.joinCode = this.generateJoinCode(); 
                     this.rooms.push(room);
-                    console.log(this.rooms)
                     this.io.emit('room_created',room.id);                    
                 });
 
@@ -59,6 +58,16 @@ class Socket{
                     this.rooms[idxRoom].players.push(user);
                     this.io.emit('joined_room',this.rooms[idxRoom].id);                    
                 });
+
+                socket.on("message_user", async (user, idRoom, messaje) =>{
+                    let idxRoom = this.rooms.findIndex(x=>x.id == idRoom)
+                    let msn = `<li>${Date.now} - ${user.name}: ${mensaje}</li>`;
+
+                    this.rooms[idxRoom].chat.push(msn);
+                    this.io.emit('joined_room',this.rooms[idxRoom].id);                    
+                });
+
+                
                 
             });
         } catch (error) {

@@ -1,0 +1,12 @@
+#tableroJuego tr td{
+    width: 5rem;
+    height: 7rem;
+    border: 1px solid red;
+    padding: 0px;
+    text-align: center;
+}
+
+#tableroJuego tr td img{
+    max-width: 100%;
+    max-height: 100%;
+}
