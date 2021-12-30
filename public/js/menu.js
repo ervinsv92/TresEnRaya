@@ -5,15 +5,17 @@ const btnIngresarSala = document.getElementById('btnIngresarSala');
 try {
     let socket = io();
 
-    socket.on("room_created", idRoom=>{
-        if(idRoom){
+    socket.on("room_created", (idRoom, idUser)=>{
+        const user = JSON.parse(localStorage.getItem(S_USER));
+        if(idRoom && user.id == idUser){
             localStorage.setItem(S_ID_ROOM, idRoom);
             window.location ="room.html"
         }
     })
 
-    socket.on("joined_room", idRoom=>{
-        if(idRoom){
+    socket.on("joined_room", (idRoom, idUser)=>{
+        const user = JSON.parse(localStorage.getItem(S_USER));
+        if(idRoom && user.id == idUser){
             localStorage.setItem(S_ID_ROOM, idRoom);
             window.location ="room.html"
         }
