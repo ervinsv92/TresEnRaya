@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-const PORT = 3000;
+const PORT = 8080;
 const Socket = require('./utils/sockets');
 
 app.use(express.static(__dirname + '/public'));
